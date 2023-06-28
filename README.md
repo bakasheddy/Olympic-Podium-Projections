@@ -3,6 +3,15 @@
 # Note:
 check the documentation of this project to know more about my workflow
 
+# Model Evaluations
+|   | LinearRegressor | DecisionTreeRegessor| RandomForestRegressor | GradientBoostRegressor |
+|:-:|:--:|:---:|:---:|:---:|
+| MAE | 0.6966 | 0.104 | 0.309 | 0.674 |
+| RMSE | 0.822 | 0.284 | 0.393 | 0.791 |
+| R2 | 0.0025 | 0.880 | 0.771 | 0.077 |
+
+from the evaluations above, RandomForestRegressor and DecisionTreeRegessor were the best performing algorithms with DecisionTreeRegessor as best performed
+
 # CONCLUSION & RECOMMENDATION
 
 By following these steps, we trained and evaluated multiple models to identify the most accurate and
