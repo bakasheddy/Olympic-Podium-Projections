@@ -45,6 +45,8 @@ The Olympic data on www.sports-reference.com is the result of an incredible amou
 
 ### Inspiration
 This dataset provides an opportunity to ask questions about how the Olympics have evolved over time, including questions about the participation and performance of women, different nations, and different sports and events.
+
+#### Sample Table
     """
              )
     st.dataframe(df.head(20))
