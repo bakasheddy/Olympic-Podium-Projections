@@ -15,29 +15,36 @@ if nav == "Home":
     # ConCop
     """)
 
-    st.image('./images/Payment-Fraud-Detection_Overgraph.jpg')
+    st.image('./image.JPG')
 
     st.write("""### About dataset
 
-The lack of legitimate datasets on mobile money transac-tions to perform research on in the domain of fraud detection is a big problem today in the scientific community. Part of the problem is the intrinsic private nature of financial transactions, that leads to no public available datasets. This will leave the researchers with the burden of first harnessing the dataset before performing the actual researchon it. This paper propose an approach to such a problemthat we named the PaySim simulator.
-
-PaySim is a financial simulator that simulates mobilemoney transactions based on an original dataset. In thispaper, we present a solution to ultimately yield the pos-sibility to simulate mobile money transactions in such away that they become similar to the original dataset. Withtechnology frameworks such as Agent-Based simulationtechniques, and the application of mathematical statistics,we show in this paper that the simulated data can be asprudent as the original dataset for research.
-This particular dataset was gotten from kaggle, it contains 6,362,620 data points with 11 columns which captures transactions that has occured in the simulator, both legitimate and fraudulent and this data is what the model was trained on.
-
+This is a historical dataset on the modern Olympic Games, including all the Games from Athens 1896 to Rio 2016. The data was scraped from www.sports-reference.com in May 2018. 
 Below are the column reference:
 
-- step: represents a unit of time where 1 step equals 1 hour
-- type: type of online transaction
-- amount: the amount of the transaction
-- nameOrig: customer starting the transaction
-- oldbalanceOrg: balance before the transaction
-- newbalanceOrig: balance after the transaction
-- nameDest: recipient of the transaction
-- oldbalanceDest: initial balance of recipient before the transaction
-- newbalanceDest: the new balance of recipient after the transaction
-- isFraud: fraud transaction
+- ID - Unique number for each athlete
+- Name - Athlete's name
+- Sex - M or F
+- Age - Integer
+- Height - In centimeters
+- Weight - In kilograms
+- Team - Team name
+- NOC - National Olympic Committee 3-letter code
+- Games - Year and season
+- Year - Integer
+- Season - Summer or Winter
+- City - Host city
+- Sport - Sport
+- Event - Event
+- Medal - Gold, Silver, Bronze, or NA
 
-link to paper [here](https://www.researchgate.net/publication/313138956_PAYSIM_A_FINANCIAL_MOBILE_MONEY_SIMULATOR_FOR_FRAUD_DETECTION)
+Note that the Winter and Summer Games were held in the same year up until 1992. After that, they staggered them such that Winter Games occur on a four year cycle starting with 1994, then Summer in 1996, then Winter in 1998, and so on. A common mistake people make when analyzing this data is to assume that the Summer and Winter Games have always been staggered.
+
+### Acknowledgements
+The Olympic data on www.sports-reference.com is the result of an incredible amount of research by a group of Olympic history enthusiasts and self-proclaimed 'statistorians'. Check out their [blog](https://olympstats.com/) for more information. All I did was consolidated their decades of work into a convenient format for data analysis.
+
+### Inspiration
+This dataset provides an opportunity to ask questions about how the Olympics have evolved over time, including questions about the participation and performance of women, different nations, and different sports and events.
     """
              )
     st.dataframe(df.head(20))
