@@ -65,7 +65,7 @@ elif nav == 'Predictions':
         step = st.sidebar.number_input('step', min_value=1, max_value=743)
 
         type = st.sidebar.selectbox(
-            'type', ['CASH_OUT', 'PAYMENT', 'CASH_IN', 'TRANSFER', 'DEBIT'], index=1)
+            'type', ['CASH_OUT', 'PAYMENT', 'CASH_IN', 'TRANSFER', 'DEBIt'], index=1)
         if type == 'CASH_OUT':
             type = 1
         elif type == 'PAYMENT':
