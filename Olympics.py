@@ -6,7 +6,8 @@ import numpy as np
 
 import pickle
 
-df = pd.read_csv('sample_data.csv')
+df_sample = pd.read_csv('sample_data.csv')
+df = pd.read_csv('modeling_set.csv')
 nav = st.sidebar.radio("Navigations", ['Home', 'Predictions'])
 
 if nav == "Home":
@@ -49,7 +50,7 @@ This dataset provides an opportunity to ask questions about how the Olympics hav
 #### Sample Table
     """
              )
-    st.dataframe(df.head(20))
+    st.dataframe(df_sample.head(20))
     st.write("""
         by Shedrack David
         connect with me on [linkedin](https://www.linkedin.com/in/shedrack-david-1a116b235/)
@@ -67,7 +68,8 @@ elif nav == 'Predictions':
         gender = st.sidebar.selectbox('Sex', ['male', 'female'], index=1)
         gender = 1 if gender.lower() == 'male' else 0
 
-        age = st.sidebar.slider('set age', value=10)
+        age = st.sidebar.slider('set age', value=20,
+                                max_value=80, min_value=12)
 
         NOC = st.sidebar.selectbox(
             'NOC(Country)', ['USA', 'RUS', 'GER', 'CHN', 'CAN', 'GBR', 'AUS', 'FRA', 'KOR', 'NED'], index=1)
@@ -92,24 +94,21 @@ elif nav == 'Predictions':
         elif NOC == 'NED':
             NOC = 9
 
-        amount = st.sidebar.number_input('amount', max_value=9.244552e+07)
-        oldbalanceOrg = st.sidebar.number_input(
-            'oldbalanceOrg', max_value=5.958504e+07)
-        newbalanceOrig = st.sidebar.number_input(
-            'newbalanceOrig', max_value=4.958504e+07)
-        oldbalanceDest = st.sidebar.number_input(
-            'oldbalanceDest', max_value=3.560159e+08)
-        newbalanceDest = st.sidebar.number_input(
-            'newbalanceDest', max_value=3.561793e+08)
+        Height = st.sidebar.number_input(
+            'Height', max_value=226.0, min_value=133.0)
+        Weight = st.sidebar.number_input(
+            'Weight', max_value=214.0, min_value=28.0)
+
+        decoded_labels = label_encoder.inverse_transform(df['sport_en'])
+        Sport = st.sidebar.selectbox(
+            'Select Sport', decoded_labels.values, index=1)
 
         data = {
-            'step': step,
+            'sport': sport_en,
             'NOC': NOC,
-            'amount': amount,
-            'oldbalanceOrg': oldbalanceOrg,
-            'newbalanceOrig': newbalanceOrig,
-            'oldbalanceDest': oldbalanceDest,
-            'newbalanceDest': newbalanceDest
+            'gender': Sex,
+            'Height': Height,
+            'Weight': Weight,
         }
         feautres = pd.DataFrame(data, index=[0])
         return feautres
@@ -117,7 +116,7 @@ elif nav == 'Predictions':
     st.header('Specified Parameters')
     st.write(dff)
     st.write('---')
-    file_name = 'ConCop_model.pkl'
+    file_name = 'olympics.pkl'
     loaded_model = pickle.load(open(file_name, 'rb'))
     predictions = loaded_model.predict(dff)
 
