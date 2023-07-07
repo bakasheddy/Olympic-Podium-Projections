@@ -59,25 +59,38 @@ This dataset provides an opportunity to ask questions about how the Olympics hav
 
 
 elif nav == 'Predictions':
-    st.image('./images/Payment-Fraud-Detection_Overgraph.jpg')
+    st.image('./image.JPG')
     st.sidebar.subheader('set parameters for predictions')
 
     def user_input_features():
 
-        step = st.sidebar.number_input('step', min_value=1, max_value=743)
+        gender = st.sidebar.selectbox('Sex', ['male', 'female'], index=1)
+        gender = 1 if gender.lower() == 'male' else 0
 
-        type = st.sidebar.selectbox(
-            'type', ['CASH_OUT', 'PAYMENT', 'CASH_IN', 'TRANSFEr', 'DEBIt'], index=1)
-        if type == 'CASH_OUT':
-            type = 1
-        elif type == 'PAYMENT':
-            type = 2
-        elif type == 'CASH_IN':
-            type = 3
-        elif type == 'TRANSFER':
-            type = 4
-        elif type == 'DEBIT':
-            type = 5
+        age = st.sidebar.slider('set age', value=10)
+
+        NOC = st.sidebar.selectbox(
+            'NOC(Country)', ['USA', 'RUS', 'GER', 'CHN', 'CAN', 'GBR', 'AUS', 'FRA', 'KOR', 'NED'], index=1)
+        if NOC == 'USA':
+            NOC = 0
+        elif NOC == 'RUS':
+            NOC = 1
+        elif NOC == 'GER':
+            NOC = 2
+        elif NOC == 'CHN':
+            NOC = 3
+        elif NOC == 'CAN':
+            NOC = 4
+        elif NOC == 'GBR':
+            NOC = 5
+        elif NOC == 'AUS':
+            NOC = 6
+        elif NOC == 'FRA':
+            NOC = 7
+        elif NOC == 'KOR':
+            NOC = 8
+        elif NOC == 'NED':
+            NOC = 9
 
         amount = st.sidebar.number_input('amount', max_value=9.244552e+07)
         oldbalanceOrg = st.sidebar.number_input(
@@ -91,7 +104,7 @@ elif nav == 'Predictions':
 
         data = {
             'step': step,
-            'type': type,
+            'NOC': NOC,
             'amount': amount,
             'oldbalanceOrg': oldbalanceOrg,
             'newbalanceOrig': newbalanceOrig,
