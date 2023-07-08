@@ -100,9 +100,30 @@ elif nav == 'Predictions':
         Weight = st.sidebar.number_input(
             'Weight', max_value=214.0, min_value=28.0)
 
-        decoded_labels = label_encoder.inverse_transform(df['sport_en'])
+        encoded_labels = [25, 9, 50, 40, 39, 34, 38, 23, 12, 46, 18,  2,  3, 16, 29, 47,  5,
+                          4, 37, 33,  1, 49, 17, 14, 27, 41, 10, 11, 22, 24, 32, 42, 21, 43,
+                          13, 30, 19,  6, 45,  0, 20, 48,  7, 15, 44, 36,  8, 35, 31, 26, 28]
+
+        original_labels = ['Judo', 'Boxing', 'Wrestling', 'Swimming', 'Speed Skating',
+                           'Short Track Speed Skating', 'Softball', 'Hockey', 'Curling',
+                           'Triathlon', 'Football', 'Athletics', 'Badminton', 'Fencing',
+                           'Rhythmic Gymnastics', 'Volleyball', 'Basketball', 'Baseball',
+                           'Snowboarding', 'Shooting', 'Archery', 'Weightlifting',
+                           'Figure Skating', 'Diving', 'Modern Pentathlon',
+                           'Synchronized Swimming', 'Canoeing', 'Cross Country Skiing',
+                           'Handball', 'Ice Hockey', 'Sailing', 'Table Tennis', 'Gymnastics',
+                           'Taekwondo', 'Cycling', 'Rowing', 'Freestyle Skiing',
+                           'Beach Volleyball', 'Trampolining', 'Alpine Skiing', 'Golf',
+                           'Water Polo', 'Biathlon', 'Equestrianism', 'Tennis', 'Ski Jumping',
+                           'Bobsleigh', 'Skeleton', 'Rugby Sevens', 'Luge', 'Nordic Combined']
+
+        # Create a mapping dictionary
+        mapping_dict = {encoded_label: original_label for encoded_label,
+                        original_label in zip(encoded_labels, original_labels)}
+        decoded_labels = [mapping_dict[encoded_label]
+                          for encoded_label in encoded_labels]
         Sport = st.sidebar.selectbox(
-            'Select Sport', decoded_labels.values, index=1)
+            'Select Sport', decoded_labels, index=1)
 
         data = {
             'sport': sport_en,
