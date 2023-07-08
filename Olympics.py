@@ -126,11 +126,12 @@ elif nav == 'Predictions':
             'Select Sport', decoded_labels, index=1)
 
         data = {
-            'sport': sport_en,
+            'sport_en': Sport,
             'NOC': NOC,
-            'gender': Sex,
+            'Sex': gender,
             'Height': Height,
             'Weight': Weight,
+            'age': age
         }
         feautres = pd.DataFrame(data, index=[0])
         return feautres
